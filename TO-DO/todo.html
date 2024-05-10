@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f5f5dc;
+    }
+   .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    h2 {
+      color: #333;
+      margin-top: 0;
+    }
+    h3 {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+   .task-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+   .task-item:last-child {
+      border-bottom: none;
+    }
+   .complete {
+      text-decoration: line-through;
+      color: #888;
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+     .container {
+        margin: 20px auto;
+      }
+    }
+    @media (max-width: 480px) {
+     .container {
+        margin: 10px auto;
+      }
+      input[type="text"] {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Add new task...">
+    <button onclick="addTask()">Add</button>
+
+    <h3>Pending Tasks</h3>
+    <ul id="pendingTasks">
+    </ul>
+
+    <h3>Completed Tasks</h3>
+    <ul id="completedTasks">
+    </ul>
+  </div>
+
+  <script>
+    function addTask() {
+      var taskInput = document.getElementById("taskInput");
+      var taskText = taskInput.value;
+      if (taskText.trim() !== "") {
+        var task = {
+          text: taskText,
+          addedDate: new Date(),
+          completed: false
+        };
+        tasks.push(task);
+        renderTasks();
+        taskInput.value = "";
+      }
+    }
+
+    function completeTask(index) {
+      tasks[index].completed = true;
+      renderTasks();
+    }
+
+    function deleteTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+    }
+
+    function renderTasks() {
+      var pendingTasksList = document.getElementById("pendingTasks");
+      var completedTasksList = document.getElementById("completedTasks");
+      pendingTasksList.innerHTML = "";
+      completedTasksList.innerHTML = "";
+
+      tasks.forEach(function(task, index) {
+        var listItem = document.createElement("li");
+        listItem.classList.add("task-item");
+        listItem.textContent = task.text;
+
+        if (task.completed) {
+          listItem.classList.add("complete");
+          completedTasksList.appendChild(listItem);
+        } else {
+          var completeButton = document.createElement("button");
+          completeButton.textContent = "Complete";
+          completeButton.onclick = function() {
+            completeTask(index);
+          };
+          listItem.appendChild(completeButton);
+
+          var deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+          deleteButton.onclick = function() {
+            deleteTask(index);
+          };
+          listItem.appendChild(deleteButton);
+
+          pendingTasksList.appendChild(listItem);
+        }
+      });
+    }
+
+    var tasks = [];
+
+    // Initial rendering
+    renderTasks();
+  </script>
+</body>
+</html>

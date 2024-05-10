@@ -1,0 +1,58 @@
+body {
+    background-color: #00FA9A;
+    margin: 20%;
+    font-family: Georgia; /* added font family to body */
+}
+
+header {
+    text-align: center;
+}
+
+#title {
+    text-shadow: 5px 5px 10px white;
+    font-size: 7vh;
+    margin-bottom: 20px; /* added margin bottom */
+}
+
+figure {
+    margin: 20px; /* added margin */
+}
+
+#img {
+    display: inline-block;
+    width: 100%;
+}
+
+figcaption {
+    font-size: 17px;
+    font-family: Gill Sans;
+    color: black;
+    text-align: center; /* added text-align center */
+}
+
+#tribute-data {
+    background-color: rgba(46, 139, 87, 0.25);
+    box-shadow: 20px 20px 20px #98FB98;
+    padding: 25px;
+    margin: 11px;
+    margin-top: 50px;
+    border-radius: 10px; /* added border radius */
+}
+
+.title-APJ {
+    font-size: 35px;
+    color: white;
+    text-align: center;
+    text-shadow: 5px 5px 10px black;
+    margin-bottom: 20px; /* added margin bottom */
+}
+
+#tribute-link {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease; /* added transition effect */
+}
+
+#tribute-link:hover {
+    color: #333; /* added hover effect */
+}
